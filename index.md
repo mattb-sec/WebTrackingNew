@@ -186,40 +186,6 @@ I then close the private browsing window. Upon re-opening, I find that the adver
 
 This is due to the properties of Firefox’s private browser. As its home page states, it does not save temporary data such as page and search histories and cookies. As such, when the browser is closed, the cookie it acquired is lost. Therefore, when Elgg’s <iframe> tag is asks for an advertisement, the database cannot find one for this browser and nothing is shown.
 
-## Real World Tracking
-
-Of course, this lab is a simplified demonstration of cookies. The websites are simple, and the lab uses an only one ad server specifically for them. This task will give some insight to how real-world data tracking looks. This time around, I am given URLs of real external websites: Dictionary.com, Amazon.com, and CareerBuilder.com. The goal is to identify HTTP requests with third-party cookies. I will do this by opening each website and looking at its network traffic with Firefox’s developer tools.
-
-First, I will look at Dictionary.com:
-
-- _Figure 20_: A capture of the network traffic in Dictionary.com. Highlighted is a third-party cookie as is indicated by a different domain name and the “Co” (Cookie) field stating it is carrying 22 cookies.
-
-<p align="center">
-  <img width="1200" height="640" src="assets/fig20.png">
-</p>
-
-Unexpectedly, there is far more network traffic going on here than on the fake e-commerce sites. This also means more cookie activity. The cookie I have highlighted in the figure above is labeled as “KADUSERCOOKIE”.  This cookie is used to identify each browser that visits a website associated with the digital advertising company, PubMatic (PubMatic).
-
-Next, I will look at CareerBuilder:
-
-- _Figure 21_: Ditto, only this time with CareerBuilder.com and a different third-party cookie with a different domain.
-
-<p align="center">
-  <img width="1200" height="640" src="assets/fig21.png">
-</p>
-
-Again, there is a lot of network activity on the site. The cookie I have selected here is labeled “A3” and is an ad targeting cookie for its domain, Yahoo (LinkedIn).
-
-Finally, I must look at Amazon. However, this part of the lab would not work properly. The in-lab Firefox kept crashing every time Amazon’s page would load. I therefore had to find a workaround by using the virtual machine’s own version of Firefox. I feel that the data is not too different from what would be expected, but I would still nevertheless consider this a limitation.
-
-- _Figure 22_: Network capture on Amazon’s page with the virtual machine’s version of Firefox. Highlighted is the only third-party cookie I could find.
-
-<p align="center">
-  <img width="1200" height="640" src="assets/fig22.png">
-</p>
-
-This site was especially interesting because I could only find one third-party cookie. The rest are Amazon’s own first-party cookies. This cookie is labeled “tuuid” and stores a randomly generated number for recurring visitors for the e-advertising company, Ad Pepper Media (LinkedIn).
-
 ## Take Countermeasures
 
 I will now see what happens if I repeat the process in Task 1 but this time, I set Firefox so that it rejects cookies. To begin, I revisit Firefox’s “Privacy & Security” settings and set the option for collecting data and cookies to “Never”. From there I open the e-commerce pages, view the detail of a product, and open the Network tab in the developer tools.
